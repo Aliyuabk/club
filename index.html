@@ -24,7 +24,7 @@
                 <li><a href="#clubs">Clubs</a></li>
                 <li><a href="#register">Register</a></li>
                 <li><a href="#stats">Statistics</a></li>
-                <li><a href="#admin" onclick="showAdmin()" class="admin-link">Admin</a></li>
+                <li><a href="#admin" onclick="showAdmin()" class="admin-link"></a></li>
             </ul>
             <div class="mobile-menu" onclick="toggleMenu()">
                 <span></span>
@@ -364,8 +364,7 @@
         <div class="admin-login" id="adminLogin">
             <h3 style="margin-bottom: 20px; color: var(--atbu-green);">🔐 Admin Login</h3>
             <input type="password" id="adminPassword" placeholder="Enter admin password" />
-            <button onclick="loginAdmin()">Login</button>
-            <p style="margin-top: 15px; color: #888; font-size: 0.9rem;">Default: admin123</p>
+            <button onclick="loginAdmin()">Login</button> 
         </div>
 
         <!-- Dashboard -->
@@ -483,7 +482,7 @@
         const whatsappLinks = {
             'AI Club': 'https://chat.whatsapp.com/Kor5wGXzbs6C5RIHdCrXoH',
             'Programming Club': 'https://chat.whatsapp.com/EfSyytRLlq735BM7D8dWEE',
-            'Web3 & Blockchain Club': 'https://chat.whatsapp.com/KQFWPxrYFkQ7yeHETb4bLU',
+            'Web3 & Blockchain Club': 'https://chat.whatsapp.com/KQFWPxrYFkQ7yeHETb4bLU?mode=gi_t',
             'Graphics Design Club': 'https://chat.whatsapp.com/GMxKUftOKfk80flhLtZ8VY',
             'Cyber Security Club': 'https://chat.whatsapp.com/CZgn3xmBZtYKPnLROlx2mc'
         };
@@ -986,7 +985,7 @@
                 </div>
                 <div class="stat-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%)">
                     <h4>${stats.cyber}</h4>
-                    <p>Cyber Sec</p>
+                    <p>Cyber Security</p>
                 </div>
             `;
         }
