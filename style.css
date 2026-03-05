@@ -611,6 +611,28 @@
             display: block;
         }
 
+        /* Duplicate Warning */
+        .duplicate-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            color: #856404;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .duplicate-warning.active {
+            display: block;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
         /* WhatsApp Popup */
         .whatsapp-popup {
             position: fixed;
@@ -693,6 +715,8 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
         .whatsapp-btn:hover {
@@ -706,6 +730,10 @@
             color: #888;
             text-decoration: none;
             font-size: 0.9rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
 
         .skip-btn:hover {

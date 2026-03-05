@@ -24,7 +24,7 @@
                 <li><a href="#clubs">Clubs</a></li>
                 <li><a href="#register">Register</a></li>
                 <li><a href="#stats">Statistics</a></li>
-                <li><a href="#admin" onclick="showAdmin()" class="admin-link"></a></li>
+                <li><a href="#admin" onclick="showAdmin()" class="admin-link">Admin</a></li>
             </ul>
             <div class="mobile-menu" onclick="toggleMenu()">
                 <span></span>
@@ -36,8 +36,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="atbu-badge">🏛️ Established 1988</div>
+        <div class="hero-content"> 
             <h1>Welcome to ATBU Faculty of Computing</h1>
             <p>Excellence in technological education, research, and innovation. Join Nigeria's premier computing faculty and shape the future of technology.</p>
             <div class="cta-buttons">
@@ -243,6 +242,12 @@
             <p>Join ATBU Faculty of Computing - Registration for 2024/2025 Academic Session</p>
         </div>
         <div class="form-container scroll-reveal">
+            <!-- Duplicate Warning -->
+            <div class="duplicate-warning" id="duplicateWarning">
+                <strong>⚠️ Already Registered!</strong>
+                <p id="duplicateText">This registration number, email, or phone number is already in our system.</p>
+            </div>
+
             <form id="registrationForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -364,7 +369,8 @@
         <div class="admin-login" id="adminLogin">
             <h3 style="margin-bottom: 20px; color: var(--atbu-green);">🔐 Admin Login</h3>
             <input type="password" id="adminPassword" placeholder="Enter admin password" />
-            <button onclick="loginAdmin()">Login</button> 
+            <button onclick="loginAdmin()">Login</button>
+            <p style="margin-top: 15px; color: #888; font-size: 0.9rem;">Default: admin123</p>
         </div>
 
         <!-- Dashboard -->
@@ -462,10 +468,10 @@
             <div class="whatsapp-icon">💬</div>
             <h3>Join Your Club WhatsApp Group!</h3>
             <p id="whatsappText">You've been assigned to the <strong>AI Club</strong>. Click below to join the group and connect with fellow members.</p>
-            <a href="#" class="whatsapp-btn" id="whatsappLink" target="_blank">
+            <button class="whatsapp-btn" id="whatsappLinkBtn" onclick="joinWhatsApp()">
                 <span>📱</span> Join WhatsApp Group
-            </a>
-            <a href="#" class="skip-btn" onclick="closeWhatsApp()">Skip for now →</a>
+            </button>
+            <button class="skip-btn" onclick="closeWhatsApp()">Skip for now →</button>
         </div>
     </div>
 
@@ -482,14 +488,16 @@
         const whatsappLinks = {
             'AI Club': 'https://chat.whatsapp.com/Kor5wGXzbs6C5RIHdCrXoH',
             'Programming Club': 'https://chat.whatsapp.com/EfSyytRLlq735BM7D8dWEE',
-            'Web3 & Blockchain Club': 'https://chat.whatsapp.com/KQFWPxrYFkQ7yeHETb4bLU?mode=gi_t',
+            'Web3 & Blockchain Club': 'https://chat.whatsapp.com/KQFWPxrYFkQ7yeHETb4bLU',
             'Graphics Design Club': 'https://chat.whatsapp.com/GMxKUftOKfk80flhLtZ8VY',
             'Cyber Security Club': 'https://chat.whatsapp.com/CZgn3xmBZtYKPnLROlx2mc'
         };
 
+        let currentWhatsAppLink = '';
+        
         // Database Configuration
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUv3_4GSJ6xO9hzlYqaFOiMtUfpLwAZsrndlhsT4XK07QpD5d_sUzb0rqqp_qRmeWU/exec';
-        const ADMIN_PASSWORD = 'boss'; // Change this!
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwpPhnhc1TSUWBgyd1JNqdxWuZ_YUXRWYNrU46mxLYxQPS3P_mI8mPLyKQA8MTE7Cma/exec';
+        const ADMIN_PASSWORD = 'boss';
         let allData = [];
 
         // Program and Club Data
@@ -817,28 +825,70 @@
             document.body.style.overflow = '';
         }
 
+        // Check for duplicates function
+        function checkDuplicate(regNumber, email, phone) {
+            const existing = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+            
+            const duplicate = existing.find(record => 
+                record.regNumber.toLowerCase() === regNumber.toLowerCase() ||
+                record.email.toLowerCase() === email.toLowerCase() ||
+                record.phone === phone
+            );
+            
+            if (duplicate) {
+                let field = '';
+                if (duplicate.regNumber.toLowerCase() === regNumber.toLowerCase()) field = 'Registration Number';
+                else if (duplicate.email.toLowerCase() === email.toLowerCase()) field = 'Email';
+                else if (duplicate.phone === phone) field = 'Phone Number';
+                
+                return {
+                    isDuplicate: true,
+                    field: field,
+                    existingData: duplicate
+                };
+            }
+            
+            return { isDuplicate: false };
+        }
+
         // Form Submission
         document.getElementById('registrationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
             const messageDiv = document.getElementById('formMessage');
+            const duplicateWarning             = document.getElementById('duplicateWarning');
             
+            // Reset messages
             messageDiv.className = 'message';
             messageDiv.style.display = 'none';
+            duplicateWarning.classList.remove('active');
 
             const formData = {
                 timestamp: new Date().toLocaleString(),
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                fullName: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
-                regNumber: document.getElementById('regNumber').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                fullName: document.getElementById('firstName').value.trim() + ' ' + document.getElementById('lastName').value.trim(),
+                regNumber: document.getElementById('regNumber').value.trim(),
+                email: document.getElementById('email').value.trim().toLowerCase(),
+                phone: document.getElementById('phone').value.trim(),
                 level: document.getElementById('level').value,
                 program: document.getElementById('program').value,
                 club: document.getElementById('club').value
             };
+
+            // Check for duplicates
+            const duplicateCheck = checkDuplicate(formData.regNumber, formData.email, formData.phone);
+            
+            if (duplicateCheck.isDuplicate) {
+                duplicateWarning.classList.add('active');
+                document.getElementById('duplicateText').innerHTML = 
+                    `<strong>${duplicateCheck.field}</strong> is already registered!<br>
+                    <small>Name: ${duplicateCheck.existingData.fullName}<br>
+                    Club: ${duplicateCheck.existingData.club}<br>
+                    Registered on: ${duplicateCheck.existingData.timestamp}</small>`;
+                return;
+            }
 
             submitBtn.disabled = true;
             submitBtn.classList.add('loading');
@@ -857,14 +907,14 @@
                 registrations.push(formData);
                 localStorage.setItem('atbuRegistrations', JSON.stringify(registrations));
 
-                // Show WhatsApp popup
-                showWhatsAppPopup(formData.club);
-                
                 // Update stats
                 updateStats();
                 
                 // Reset form
                 this.reset();
+                
+                // Show WhatsApp popup
+                showWhatsAppPopup(formData.club);
 
             } catch (error) {
                 console.error('Error:', error);
@@ -878,7 +928,7 @@
         });
 
         function showMessage(text, type) {
-            const msg =  document.getElementById('formMessage');
+            const msg = document.getElementById('formMessage');
             msg.textContent = text;
             msg.className = `message ${type}`;
         }
@@ -890,18 +940,26 @@
             updateStats();
         }
 
-        // WhatsApp Popup Functions
+        // WhatsApp Popup Functions - FIXED
         function showWhatsAppPopup(clubName) {
             const popup = document.getElementById('whatsappPopup');
-            const link = whatsappLinks[clubName];
             const text = document.getElementById('whatsappText');
-            const btn = document.getElementById('whatsappLink');
+            
+            currentWhatsAppLink = whatsappLinks[clubName];
             
             text.innerHTML = `You've been assigned to the <strong>${clubName}</strong>. Click below to join the group and connect with fellow members.`;
-            btn.href = link;
             
             popup.classList.add('active');
             document.body.style.overflow = 'hidden';
+        }
+
+        function joinWhatsApp() {
+            if (currentWhatsAppLink) {
+                // Open in new tab
+                window.open(currentWhatsAppLink, '_blank');
+                closeWhatsApp();
+                showMessage('✅ Registration successful! Welcome to ATBU Faculty of Computing.', 'success');
+            }
         }
 
         function closeWhatsApp() {
@@ -934,18 +992,69 @@
         }
 
         async function loadAdminData() {
-            // Try to fetch from Google Sheets first
+            // First try to get from localStorage
+            let localData = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+            
+            // Then try to fetch from Google Sheets
             try {
                 const response = await fetch(SCRIPT_URL + '?action=getData', {
                     method: 'GET',
-                    mode: 'cors'
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
-                const data = await response.json();
-                allData = data;
+                
+                if (response.ok) {
+                    const sheetData = await response.json();
+                    // Merge local and sheet data, removing duplicates
+                    const merged = [...localData];
+                    
+                    sheetData.forEach(sheetRow => {
+                        const exists = merged.some(local => 
+                            local.regNumber === sheetRow.regNumber || 
+                            local.email === sheetRow.email
+                        );
+                        if (!exists && sheetRow.regNumber) {
+                            merged.push({
+                                timestamp: sheetRow.Timestamp || sheetRow.timestamp || '-',
+                                firstName: sheetRow.firstName || sheetRow['First Name'] || '-',
+                                lastName: sheetRow.lastName || sheetRow['Last Name'] || '-',
+                                fullName: sheetRow.fullName || sheetRow['Full Name'] || 
+                                          (sheetRow.firstName + ' ' + sheetRow.lastName) || '-',
+                                regNumber: sheetRow.regNumber || sheetRow['Registration Number'] || '-',
+                                email: sheetRow.email || sheetRow['Email'] || '-',
+                                phone: sheetRow.phone || sheetRow['Phone'] || '-',
+                                level: sheetRow.level || sheetRow['Level'] || '-',
+                                program: sheetRow.program || sheetRow['Program'] || '-',
+                                club: sheetRow.club || sheetRow['Club'] || '-'
+                            });
+                        }
+                    });
+                    
+                    allData = merged;
+                } else {
+                    allData = localData;
+                }
             } catch (e) {
-                // Fallback to localStorage
-                allData = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+                console.log('Using local data only:', e);
+                allData = localData;
             }
+            
+            // Ensure all data has proper fields
+            allData = allData.map(row => ({
+                timestamp: row.timestamp || row.Timestamp || '-',
+                firstName: row.firstName || row['First Name'] || '-',
+                lastName: row.lastName || row['Last Name'] || '-',
+                fullName: row.fullName || row['Full Name'] || 
+                          (row.firstName && row.lastName ? row.firstName + ' ' + row.lastName : '-') || '-',
+                regNumber: row.regNumber || row['Registration Number'] || '-',
+                email: row.email || row['Email'] || '-',
+                phone: row.phone || row['Phone'] || '-',
+                level: row.level || row['Level'] || '-',
+                program: row.program || row['Program'] || '-',
+                club: row.club || row['Club'] || '-'
+            }));
             
             updateAdminStats();
             renderTable(allData);
@@ -954,11 +1063,11 @@
         function updateAdminStats() {
             const stats = {
                 total: allData.length,
-                ai: allData.filter(d => d.club === 'AI Club').length,
-                programming: allData.filter(d => d.club === 'Programming Club').length,
-                web3: allData.filter(d => d.club === 'Web3 & Blockchain Club').length,
-                graphics: allData.filter(d => d.club === 'Graphics Design Club').length,
-                cyber: allData.filter(d => d.club === 'Cyber Security Club').length
+                ai: allData.filter(d => d.club && d.club.includes('AI')).length,
+                programming: allData.filter(d => d.club && d.club.includes('Programming')).length,
+                web3: allData.filter(d => d.club && d.club.includes('Web3')).length,
+                graphics: allData.filter(d => d.club && d.club.includes('Graphics')).length,
+                cyber: allData.filter(d => d.club && d.club.includes('Cyber')).length
             };
 
             const statsContainer = document.getElementById('adminStats');
@@ -985,7 +1094,7 @@
                 </div>
                 <div class="stat-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%)">
                     <h4>${stats.cyber}</h4>
-                    <p>Cyber Security</p>
+                    <p>Cyber Sec</p>
                 </div>
             `;
         }
@@ -994,32 +1103,49 @@
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
             
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 30px;">No data available</td></tr>';
+                return;
+            }
+            
             data.forEach(row => {
                 const tr = document.createElement('tr');
                 const clubClass = getClubBadgeClass(row.club);
+                
+                // Safe data access with fallbacks
+                const timestamp = row.timestamp || '-';
+                const fullName = row.fullName || 
+                                (row.firstName && row.lastName ? row.firstName + ' ' + row.lastName : '-') || 
+                                '-';
+                const regNumber = row.regNumber || '-';
+                const email = row.email || '-';
+                const phone = row.phone || '-';
+                const level = row.level || '-';
+                const program = row.program || '-';
+                const club = row.club || '-';
+                
                 tr.innerHTML = `
-                    <td>${row.timestamp || '-'}</td>
-                    <td>${row.fullName}</td>
-                    <td>${row.regNumber}</td>
-                    <td>${row.email}</td>
-                    <td>${row.phone}</td>
-                    <td>${row.level}</td>
-                    <td>${row.program}</td>
-                    <td><span class="club-badge ${clubClass}">${row.club}</span></td>
+                    <td>${timestamp}</td>
+                    <td>${fullName}</td>
+                    <td>${regNumber}</td>
+                    <td>${email}</td>
+                    <td>${phone}</td>
+                    <td>${level}</td>
+                    <td>${program}</td>
+                    <td><span class="club-badge ${clubClass}">${club}</span></td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
         function getClubBadgeClass(club) {
-            const map = {
-                'AI Club': 'badge-ai',
-                'Programming Club': 'badge-programming',
-                'Web3 & Blockchain Club': 'badge-web3',
-                'Graphics Design Club': 'badge-graphics',
-                'Cyber Security Club': 'badge-cyber'
-            };
-            return map[club] || '';
+            if (!club) return '';
+            if (club.includes('AI')) return 'badge-ai';
+            if (club.includes('Programming')) return 'badge-programming';
+            if (club.includes('Web3')) return 'badge-web3';
+            if (club.includes('Graphics')) return 'badge-graphics';
+            if (club.includes('Cyber')) return 'badge-cyber';
+            return '';
         }
 
         function filterData() {
@@ -1029,10 +1155,10 @@
             let filtered = allData;
             
             if (clubFilter !== 'all') {
-                filtered = filtered.filter(d => d.club === clubFilter);
+                filtered = filtered.filter(d => d.club && d.club.includes(clubFilter.replace(' Club', '')));
             }
             if (programFilter !== 'all') {
-                filtered = filtered.filter(d => d.program === programFilter);
+                filtered = filtered.filter(d => d.program && d.program.includes(programFilter));
             }
             
             renderTable(filtered);
@@ -1046,11 +1172,11 @@
             let filename = 'atbu_registrations';
             
             if (clubFilter !== 'all') {
-                filtered = filtered.filter(d => d.club === clubFilter);
+                filtered = filtered.filter(d => d.club && d.club.includes(clubFilter.replace(' Club', '')));
                 filename += `_${clubFilter.replace(/\s+/g, '_')}`;
             }
             if (programFilter !== 'all') {
-                filtered = filtered.filter(d => d.program === programFilter);
+                filtered = filtered.filter(d => d.program && d.program.includes(programFilter));
                 filename += `_${programFilter.replace(/\s+/g, '_')}`;
             }
             
@@ -1059,19 +1185,25 @@
             // CSV Headers
             const headers = ['Timestamp', 'First Name', 'Last Name', 'Full Name', 'Registration Number', 'Email', 'Phone', 'Level', 'Program', 'Club'];
             
-            // CSV Rows
-            const rows = filtered.map(row => [
-                row.timestamp,
-                row.firstName,
-                row.lastName,
-                row.fullName,
-                row.regNumber,
-                row.email,
-                row.phone,
-                row.level,
-                row.program,
-                row.club
-            ]);
+            // CSV Rows with safe data access
+            const rows = filtered.map(row => {
+                const firstName = row.firstName || row['First Name'] || '';
+                const lastName = row.lastName || row['Last Name'] || '';
+                const fullName = row.fullName || row['Full Name'] || (firstName + ' ' + lastName) || '';
+                
+                return [
+                    row.timestamp || row.Timestamp || '',
+                    firstName,
+                    lastName,
+                    fullName,
+                    row.regNumber || row['Registration Number'] || '',
+                    row.email || row['Email'] || '',
+                    row.phone || row['Phone'] || '',
+                    row.level || row['Level'] || '',
+                    row.program || row['Program'] || '',
+                    row.club || row['Club'] || ''
+                ];
+            });
             
             // Combine
             const csvContent = [
@@ -1084,7 +1216,9 @@
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
             link.download = filename;
+            document.body.appendChild(link);
             link.click();
+            document.body.removeChild(link);
         }
 
         // Public Stats Update
@@ -1093,14 +1227,13 @@
             
             // Update main stats
             document.getElementById('statTotal').textContent = regs.length + 1247;
-            document.getElementById('statProjects').textContent = Math.floor(regs.length * 1.5) + 89;
             
-            // Update detailed stats
-            document.getElementById('statCS').textContent = regs.filter(r => r.program === 'Computer Science').length + 342;
-            document.getElementById('statAI').textContent = regs.filter(r => r.program === 'Artificial Intelligence').length + 156;
-            document.getElementById('statCyber').textContent = regs.filter(r => r.program === 'Cyber Security').length + 89;
-            document.getElementById('statProgramming').textContent = regs.filter(r => r.club === 'Programming Club').length + 150;
-            document.getElementById('statAIC').textContent = regs.filter(r => r.club === 'AI Club').length + 85;
+            // Update detailed stats with safe checking
+            document.getElementById('statCS').textContent = regs.filter(r => r.program && r.program.includes('Computer Science')).length + 342;
+            document.getElementById('statAI').textContent = regs.filter(r => r.program && r.program.includes('Artificial Intelligence')).length + 156;
+            document.getElementById('statCyber').textContent = regs.filter(r => r.program && r.program.includes('Cyber Security')).length + 89;
+            document.getElementById('statProgramming').textContent = regs.filter(r => r.club && r.club.includes('Programming')).length + 150;
+            document.getElementById('statAIC').textContent = regs.filter(r => r.club && r.club.includes('AI')).length + 85;
         }
 
         // Mobile Menu
