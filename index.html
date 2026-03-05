@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATBU Faculty of Computing - Student Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">ATBU</div>
+                <div class="logo-text">
+                    <h1>ATBU</h1>
+                    <span>Faculty of Computing</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#clubs">Clubs</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#stats">Statistics</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="atbu-badge">🏛️ Established 1988</div>
+            <h1>Welcome to ATBU Faculty of Computing</h1>
+            <p>Excellence in technological education, research, and innovation. Join Nigeria's premier computing faculty and shape the future of technology.</p>
+            <div class="cta-buttons">
+                <a href="#register" class="btn btn-primary">Register Now</a>
+                <a href="#programs" class="btn btn-secondary">Explore Programs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <div class="section-title scroll-reveal">
+            <h2>Academic Programs</h2>
+            <p>World-class computing programs designed to meet industry demands</p>
+        </div>
+        <div class="programs-grid">
+            <div class="program-card scroll-reveal" onclick="openModal('cs')">
+                <div class="program-header program-cs">
+                    <div class="program-icon">💻</div>
+                    <h3>Computer Science</h3>
+                    <p>B.Tech. Computer Science</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>Master the fundamentals of computing, algorithms, software engineering, and system architecture.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card scroll-reveal" onclick="openModal('ai')">
+                <div class="program-header program-ai">
+                    <div class="program-icon">🤖</div>
+                    <h3>Artificial Intelligence</h3>
+                    <p>B.Tech. AI & Machine Learning</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>Deep learning, neural networks, natural language processing, and intelligent systems development.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card scroll-reveal" onclick="openModal('cyber')">
+                <div class="program-header program-cyber">
+                    <div class="program-icon">🔒</div>
+                    <h3>Cyber Security</h3>
+                    <p>B.Tech. Cyber Security</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>Network security, ethical hacking, digital forensics, and information assurance.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+
+             <div class="program-card scroll-reveal" onclick="openModal('it')">
+                <div class="program-header program-it">
+                    <div class="program-icon">🌐</div>
+                    <h3>Software Engineering</h3>
+                    <p>B.Tech. Software Engineering</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>IT infrastructure, cloud computing, database management, and systems administration.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card scroll-reveal" onclick="openModal('it')">
+                <div class="program-header program-it">
+                    <div class="program-icon">🌐</div>
+                    <h3>Information Technology</h3>
+                    <p>B.Tech. Information Technology</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>IT infrastructure, cloud computing, database management, and systems administration.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="program-card scroll-reveal" onclick="openModal('is')">
+                <div class="program-header program-is">
+                    <div class="program-icon">📊</div>
+                    <h3>Information Systems</h3>
+                    <p>B.Tech. Information Systems</p>
+                    <div class="click-hint">Click for details →</div>
+                </div>
+                <div class="program-body">
+                    <p>Business analytics, ERP systems, data management, and technology strategy.</p>
+                    <div class="program-meta">
+                        <span>⏱️ 5 Years</span>
+                        <span>🎓 B.Tech. Degree</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clubs Section -->
+    <section class="section clubs-section" id="clubs">
+        <div class="section-title scroll-reveal">
+            <h2>Tech Clubs & Communities</h2>
+            <p>Join our vibrant student-led tech communities</p>
+        </div>
+        <div class="clubs-grid">
+            <div class="club-card scroll-reveal" onclick="openModal('club-ai')">
+                <div class="club-header club-ai">
+                    <div class="club-icon">🤖</div>
+                    <h3>Artificial Intelligence (AI) Club</h3>
+                    <p>Innovating the future</p>
+                </div>
+                <div class="club-body">
+                    <p>Explore machine learning, build intelligent systems, and participate in national AI competitions.</p>
+                    <div class="club-stats">
+                        <span>👥 85 Members</span>
+                        <span>🏆 12 Awards</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="club-card scroll-reveal" onclick="openModal('club-programming')">
+                <div class="club-header club-programming">
+                    <div class="club-icon">💻</div>
+                    <h3>Programming Club</h3>
+                    <p>Code. Create. Innovate.</p>
+                </div>
+                <div class="club-body">
+                    <p>Weekly coding sessions, hackathons, competitive programming, and open-source contributions.</p>
+                    <div class="club-stats">
+                        <span>👥 150 Members</span>
+                        <span>🚀 45 Projects</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="club-card scroll-reveal" onclick="openModal('club-web3')">
+                <div class="club-header club-web3">
+                    <div class="club-icon">🌐</div>
+                    <h3>Web3 & Blockchain</h3>
+                    <p>Building decentralized future</p>
+                </div>
+                <div class="club-body">
+                    <p>Blockchain development, smart contracts, DeFi, NFTs, and cryptocurrency research.</p>
+                    <div class="club-stats">
+                        <span>👥 60 Members</span>
+                        <span>⛓️ 8 DApps Built</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="club-card scroll-reveal" onclick="openModal('club-graphics')">
+                <div class="club-header club-graphics">
+                    <div class="club-icon">🎨</div>
+                    <h3>Graphics Design</h3>
+                    <p>Creativity meets technology</p>
+                </div>
+                <div class="club-body">
+                    <p>UI/UX design, 3D modeling, animation, digital art, and brand identity design.</p>
+                    <div class="club-stats">
+                        <span>👥 70 Members</span>
+                        <span>🎨 200+ Designs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="club-card scroll-reveal" onclick="openModal('club-cyber')">
+                <div class="club-header club-cyber">
+                    <div class="club-icon">🔒</div>
+                    <h3>Cyber Security Club</h3>
+                    <p>Defending digital assets</p>
+                </div>
+                <div class="club-body">
+                    <p>CTF competitions, penetration testing, security workshops, and ethical hacking training.</p>
+                    <div class="club-stats">
+                        <span>👥 55 Members</span>
+                        <span>🛡️ 20 CTF Wins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="section registration-section" id="register">
+        <div class="section-title scroll-reveal">
+            <h2>Student Registration</h2>
+            <p>Join ATBU Faculty of Computing - Registration for 2024/2025 Academic Session</p>
+        </div>
+        <div class="form-container scroll-reveal">
+            <form id="registrationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="regNumber">Registration Number *</label>
+                        <input type="text" id="regNumber" name="regNumber" placeholder="e.g., UG18/ CSC/ 1001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="student@atbu.edu.ng" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="e.g., 08012345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="level">Level *</label>
+                        <select id="level" name="level" required>
+                            <option value="">Select Level</option>
+                            <option value="100">100 Level</option>
+                            <option value="200">200 Level</option>
+                            <option value="300">300 Level</option>
+                            <option value="400">400 Level</option>
+                            <option value="500">500 Level</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="program">Select Program *</label>
+                    <select id="program" name="program" required>
+                        <option value="">Choose your program</option>
+                        <option value="Computer Science">B.Tech. Computer Science</option>
+                        <option value="Artificial Intelligence">B.Tech. Artificial Intelligence</option>
+                        <option value="Cyber Security">B.Tech. Cyber Security</option>
+                        <option value="Information Technology">B.Tech. Information Technology</option>
+                        <option value="Information Systems">B.Tech. Information Systems</option>
+                    </select>
+                </div>
+
+                 <div class="form-group">
+                    <label for="club">Select Tech Club *</label>
+                    <select id="club" name="club" required>
+                        <option value="">Choose your tech club</option>
+                        <option value="AI Club"> AI Club</option>
+                        <option value="Programming Club">Programming Club</option>
+                        <option value="Web3 & Blockchain Club"> Web3 & Blockchain Club</option>
+                        <option value="Graphics & Design Club"> Graphics Design Club</option>
+                        <option value="Cyber Security Club"> Cyber Security Club</option>
+                    </select>
+                </div> 
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Complete Registration</span>
+                    <div class="spinner"></div>
+                </button>
+
+                <div id="formMessage" class="message"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section stats-section" id="stats">
+        <div class="stats-grid">
+            <div class="stat-item scroll-reveal">
+                <h3 id="statStudents">0</h3>
+                <p>Registered Students</p>
+            </div>
+            <div class="stat-item scroll-reveal">
+                <h3>5</h3>
+                <p>Degree Programs</p>
+            </div>
+            <div class="stat-item scroll-reveal">
+                <h3>5</h3>
+                <p>Active Tech Clubs</p>
+            </div>
+            <div class="stat-item scroll-reveal">
+                <h3 id="statProjects">0</h3>
+                <p>Student Projects</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ATBU Faculty of Computing</h4>
+                <p>Yelwa Campus, Bauchi State, Nigeria</p>
+                <p>📞 +234 802 123 4567</p>
+                <p>✉️ computing@atbu.edu.ng</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#programs">Academic Programs</a></p>
+                <p><a href="#clubs">Student Clubs</a></p>
+                <p><a href="#register">Registration</a></p>
+                <p><a href="#">Student Portal</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <p><a href="#">E-Library</a></p>
+                <p><a href="#">Course Materials</a></p>
+                <p><a href="#">Academic Calendar</a></p>
+                <p><a href="#">Timetable</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <p><a href="#">Facebook</a></p>
+                <p><a href="#">Twitter</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Instagram</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Abubakar Tafawa Balewa University. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // Database Configuration - REPLACE WITH YOUR GOOGLE APPS SCRIPT URL
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzm2F4QEVkqScWK04IHWL0VOIn2iNjF-927kvPt6S934zhOepa-_QJYuze04TB4olvH/exec';
+        
+        // Program and Club Data
+        const modalData = {
+            'cs': {
+                title: 'Computer Science',
+                subtitle: 'B.Tech. Computer Science - 5 Years',
+                icon: '💻',
+                color: 'linear-gradient(135deg, #006633 0%, #004d26 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>📚 Program Overview</h3>
+                        <p>The Computer Science program at ATBU provides comprehensive training in computing fundamentals, software development, and system architecture. Our curriculum is designed to meet NUC standards and international best practices.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎯 Core Courses</h3>
+                        <ul>
+                            <li>Data Structures and Algorithms</li>
+                            <li>Object-Oriented Programming (Java, Python, C++)</li>
+                            <li>Database Management Systems</li>
+                            <li>Computer Networks & Security</li>
+                            <li>Software Engineering</li>
+                            <li>Operating Systems</li>
+                            <li>Web and Mobile Development</li>
+                            <li>Artificial Intelligence Fundamentals</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Career Opportunities</h3>
+                        <ul>
+                            <li>Software Developer/Engineer</li>
+                            <li>Systems Analyst</li>
+                            <li>Database Administrator</li>
+                            <li>Network Architect</li>
+                            <li>IT Consultant</li>
+                            <li>Research Scientist</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎓 Admission Requirements</h3>
+                        <p>Five O'Level credits including Mathematics, English, Physics, and two other Science subjects. UTME subjects: Mathematics, Physics, and one of Chemistry, Biology, or Economics.</p>
+                    </div>
+                `
+            },
+            'ai': {
+                title: 'Artificial Intelligence',
+                subtitle: 'B.Tech. AI & Machine Learning - 5 Years',
+                icon: '🤖',
+                color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>📚 Program Overview</h3>
+                        <p>Our AI program is Nigeria's premier degree in Artificial Intelligence, focusing on machine learning, deep learning, neural networks, and intelligent systems. Students work with real-world datasets and industry-standard tools.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎯 Core Courses</h3>
+                        <ul>
+                            <li>Machine Learning & Pattern Recognition</li>
+                            <li>Deep Learning and Neural Networks</li>
+                            <li>Natural Language Processing</li>
+                            <li>Computer Vision</li>
+                            <li>Robotics and Automation</li>
+                            <li>Data Mining and Big Data Analytics</li>
+                            <li>AI Ethics and Governance</li>
+                            <li>Reinforcement Learning</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🛠️ Lab Facilities</h3>
+                        <ul>
+                            <li>NVIDIA GPU Computing Lab</li>
+                            <li>Robotics and IoT Lab</li>
+                            <li>Data Science Research Center</li>
+                            <li>AI Innovation Hub</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Career Paths</h3>
+                        <p>AI Engineer, Machine Learning Engineer, Data Scientist, Robotics Engineer, NLP Engineer, AI Researcher, and more.</p>
+                    </div>
+                `
+            },
+            'cyber': {
+                title: 'Cyber Security',
+                subtitle: 'B.Tech. Cyber Security - 5 Years',
+                icon: '🔒',
+                color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>📚 Program Overview</h3>
+                        <p>Prepare for the critical field of cybersecurity with hands-on training in ethical hacking, digital forensics, and information assurance. Our program addresses Nigeria's growing need for cybersecurity professionals.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎯 Core Courses</h3>
+                        <ul>
+                            <li>Network Security & Defense</li>
+                            <li>Ethical Hacking and Penetration Testing</li>
+                            <li>Digital Forensics</li>
+                            <li>Cryptography</li>
+                            <li>Secure Software Development</li>
+                            <li>Cyber Threat Intelligence</li>
+                            <li>Incident Response</li>
+                            <li>Security Governance</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🏆 Certifications</h3>
+                        <p>Students prepare for industry certifications: CompTIA Security+, CEH (Certified Ethical Hacker), CISSP, and Cisco CyberOps.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Career Opportunities</h3>
+                        <p>Cyber Security Analyst, Penetration Tester, Security Architect, Digital Forensics Expert, SOC Analyst, and CISO.</p>
+                    </div>
+                `
+            },
+            'it': {
+                title: 'Information Technology',
+                subtitle: 'B.Tech. Information Technology - 5 Years',
+                icon: '🌐',
+                color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>📚 Program Overview</h3>
+                        <p>The B.Tech IT program focuses on practical technology implementation, infrastructure management, and enterprise systems. Includes industrial training in year 4.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎯 Core Courses</h3>
+                        <ul>
+                            <li>IT Infrastructure Management</li>
+                            <li>Cloud Computing (AWS, Azure)</li>
+                            <li>Database Administration</li>
+                            <li>System Analysis and Design</li>
+                            <li>Enterprise Resource Planning</li>
+                            <li>IT Project Management</li>
+                            <li>Virtualization Technologies</li>
+                            <li>IT Service Management</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎓 Industrial Training</h3>
+                        <p>6-month mandatory IT in year 4 at leading tech companies including Andela, Interswitch, SystemSpecs, and government agencies.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Career Paths</h3>
+                        <p>IT Manager, Cloud Architect, Systems Administrator, Network Engineer, IT Consultant, Technical Support Manager.</p>
+                    </div>
+                `
+            },
+            'is': {
+                title: 'Information Systems',
+                subtitle: 'B.Tech. Information Systems - 5 Years',
+                icon: '📊',
+                color: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>📚 Program Overview</h3>
+                        <p>Bridge business and technology with our Information Systems program. Learn to design, implement, and manage systems that drive organizational success.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎯 Core Courses</h3>
+                        <ul>
+                            <li>Business Intelligence and Analytics</li>
+                            <li>Enterprise Systems (SAP, Oracle)</li>
+                            <li>Database Systems for Business</li>
+                            <li>E-Commerce and Digital Business</li>
+                            <li>IT Strategy and Governance</li>
+                            <li>Business Process Management</li>
+                            <li>Data Visualization</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>📊 Business Focus</h3>
+                        <p>Combine technical skills with business acumen. Learn to translate business needs into technical solutions and drive digital transformation.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Career Opportunities</h3>
+                        <p>Business Analyst, Systems Analyst, Data Analyst, IT Business Consultant, ERP Consultant, Digital Transformation Specialist.</p>
+                    </div>
+                `
+            },
+            'club-ai': {
+                title: 'AI & Robotics Club',
+                subtitle: 'ATBU Tech Community',
+                icon: '🤖',
+                color: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>🎯 About the Club</h3>
+                        <p>The AI & Robotics Club is ATBU's premier community for students passionate about artificial intelligence, machine learning, and robotics. We bridge the gap between academic learning and practical application.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🚀 Activities</h3>
+                        <ul>
+                            <li>Weekly ML Study Groups</li>
+                            <li>Robotics Workshops (Arduino, Raspberry Pi)</li>
+                            <li>Kaggle Competition Teams</li>
+                            <li>Research Paper Discussions</li>
+                            <li>Industry Expert Sessions</li>
+                            <li>AI Project Showcase</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🏆 Achievements</h3>
+                        <ul>
+                            <li>1st Place - NITDA AI Hackathon 2023</li>
+                            <li>Best Robotics Project - National Engineering Conference</li>
+                            <li>Published 3 Research Papers in AI</li>
+                            <li>Trained 200+ students in ML basics</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>👥 Leadership</h3>
+                        <p>President: Ahmad Ibrahim | Vice President: Sarah Okafor | Faculty Advisor: Dr. Musa Abdullahi</p>
+                    </div>
+                `
+            },
+            'club-programming': {
+                title: 'Programming Club',
+                subtitle: 'Code. Create. Innovate.',
+                icon: '💻',
+                color: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>🎯 About the Club</h3>
+                        <p>The Programming Club is the largest tech community at ATBU, bringing together coders of all levels. From beginners to competitive programmers, everyone has a place here.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>💻 What We Do</h3>
+                        <ul>
+                            <li>Daily Coding Challenges</li>
+                            <li>Algorithm and Data Structures Training</li>
+                            <li>Web and Mobile Development Projects</li>
+                            <li>Open Source Contributions</li>
+                            <li>Interview Preparation (FAANG)</li>
+                            <li>Hackathons and Coding Competitions</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🛠️ Tech Stacks</h3>
+                        <p>Python, JavaScript, Java, C++, Go, Rust, React, Node.js, Flutter, and more. We cover full-stack, mobile, and systems programming.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>📅 Meeting Times</h3>
+                        <p>General Meetings: Saturdays 2PM | Coding Sessions: Wednesdays 4PM | Location: Computer Science Lab 3</p>
+                    </div>
+                `
+            },
+            'club-web3': {
+                title: 'Web3 & Blockchain Club',
+                subtitle: 'Building the Decentralized Future',
+                icon: '🌐',
+                color: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>🎯 About the Club</h3>
+                        <p>Explore the future of the internet with blockchain technology, smart contracts, and decentralized applications. We're building the next generation of Web3 developers in Nigeria.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>⛓️ Focus Areas</h3>
+                        <ul>
+                            <li>Ethereum and Solidity Development</li>
+                            <li>Smart Contract Security</li>
+                            <li>DeFi Protocols</li>
+                            <li>NFT Development</li>
+                            <li>Blockchain Architecture</li>
+                            <li>Crypto Economics</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🚀 Projects</h3>
+                        <ul>
+                            <li>ATBU Campus Token (ERC-20)</li>
+                            <li>Decentralized Voting System</li>
+                            <li>NFT Marketplace for Student Art</li>
+                            <li>Supply Chain DApp</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>💰 Sponsorship</h3>
+                        <p>Supported by Ethereum Foundation, Binance Academy, and local blockchain startups. Members receive grants for innovative projects.</p>
+                    </div>
+                `
+            },
+            'club-graphics': {
+                title: 'Graphics & Design Club',
+                subtitle: 'Creativity Meets Technology',
+                icon: '🎨',
+                color: 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>🎯 About the Club</h3>
+                        <p>Where art and technology converge. Our design club focuses on digital creativity, UI/UX design, and visual communication for the tech industry.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🎨 Activities</h3>
+                        <ul>
+                            <li>UI/UX Design Workshops (Figma, Adobe XD)</li>
+                            <li>3D Modeling and Animation (Blender)</li>
+                            <li>Brand Identity Design</li>
+                            <li>Motion Graphics</li>
+                            <li>Design Thinking Sessions</li>
+                            <li>Portfolio Reviews</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🖥️ Software Access</h3>
+                        <p>Members get access to Adobe Creative Suite, Figma Pro, Blender, Cinema 4D, and other professional design tools through educational licenses.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>💼 Client Projects</h3>
+                        <p>Work on real design projects for university departments, local businesses, and startups. Build your portfolio while earning.</p>
+                    </div>
+                `
+            },
+            'club-cyber': {
+                title: 'Cyber Security Club',
+                subtitle: 'Defending the Digital Frontier',
+                icon: '🔒',
+                color: 'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+                content: `
+                    <div class="info-section">
+                        <h3>🎯 About the Club</h3>
+                        <p>ATBU's elite security community. We train ethical hackers, security researchers, and digital forensics experts to protect against cyber threats.</p>
+                    </div>
+                    <div class="info-section">
+                        <h3>🛡️ Training Programs</h3>
+                        <ul>
+                            <li>Penetration Testing Labs</li>
+                            <li>Capture The Flag (CTF) Competitions</li>
+                            <li>Digital Forensics Workshops</li>
+                            <li>Malware Analysis</li>
+                            <li>Network Defense</li>
+                            <li>Security Cert Prep (CEH, Security+)</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🏆 CTF Achievements</h3>
+                        <ul>
+                            <li>1st Place - CyberChain Africa CTF 2023</li>
+                            <li>Top 10 - National Cybersecurity Challenge</li>
+                            <li>Best Student Team - NCSAM Hackathon</li>
+                        </ul>
+                    </div>
+                    <div class="info-section">
+                        <h3>🔐 Lab Access</h3>
+                        <p>Exclusive access to our Cyber Range, equipped with Kali Linux, Metasploit, Wireshark, and isolated networks for safe practice.</p>
+                    </div>
+                `
+            }
+        };
+
+        // Modal Functions
+        function openModal(id) {
+            const data = modalData[id];
+            if (!data) return;
+
+            const modalBody = document.getElementById('modalBody');
+            modalBody.innerHTML = `
+                <div class="modal-header" style="background: ${data.color}">
+                    <button class="close-modal" onclick="closeModal()">&times;</button>
+                    <div class="icon">${data.icon}</div>
+                    <h2>${data.title}</h2>
+                    <p>${data.subtitle}</p>
+                </div>
+                <div class="modal-body">
+                    ${data.content}
+                </div>
+            `;
+
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== document.getElementById('modalOverlay')) return;
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Club Selection
+        function selectClub(clubId) {
+            document.querySelectorAll('.radio-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            const selectedItem = document.getElementById(`club-${clubId}-radio`).closest('.radio-item');
+            selectedItem.classList.add('selected');
+            document.getElementById(`club-${clubId}-radio`).checked = true;
+        }
+
+        // Form Submission
+        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('formMessage');
+            
+            messageDiv.className = 'message';
+            messageDiv.style.display = 'none';
+
+            const formData = {
+                timestamp: new Date().toLocaleString(),
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                fullName: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+                regNumber: document.getElementById('regNumber').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                level: document.getElementById('level').value,
+                program: document.getElementById('program').value,
+                club: document.querySelector('input[name="club"]:checked')?.value
+            };
+
+            if (!formData.club) {
+                showMessage('Please select a club', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+
+            try {
+                // Send to Google Sheets
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'submit', data: formData })
+                });
+
+                // Backup to localStorage
+                const registrations = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+                registrations.push(formData);
+                localStorage.setItem('atbuRegistrations', JSON.stringify(registrations));
+
+                updateStats();
+                showMessage('✅ Registration successful! Check your email for confirmation.', 'success');
+                this.reset();
+                document.querySelectorAll('.radio-item').forEach(item => item.classList.remove('selected'));
+
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('⚠️ Network error. Data saved locally and will sync later.', 'error');
+                saveToLocal(formData);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+            }
+        });
+
+        function showMessage(text, type) {
+            const msg = document.getElementById('formMessage');
+            msg.textContent = text;
+            msg.className = `message ${type}`;
+        }
+
+        function saveToLocal(data) {
+            const existing = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+            existing.push(data);
+            localStorage.setItem('atbuRegistrations', JSON.stringify(existing));
+            updateStats();
+        }
+
+        function updateStats() {
+            const regs = JSON.parse(localStorage.getItem('atbuRegistrations') || '[]');
+            document.getElementById('statStudents').textContent = regs.length + 1247; // Base + new
+            document.getElementById('statProjects').textContent = Math.floor(regs.length * 1.5) + 89;
+        }
+
+        // Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Scroll Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Initialize
+        updateStats();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+            } else {
+                navbar.style.padding = '15px 0';
+            }
+        });
+    </script>
+</body>
+</html>
